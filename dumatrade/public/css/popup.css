@@ -1,0 +1,100 @@
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  margin: 70px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  width: 50%;
+  height: 15%;
+  position: relative;
+}
+
+.popup {
+  margin: 70px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  width:20%;
+  height: 15px;
+  position: relative;
+}
+.popup2 {
+  margin: 70px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  width: 20%%;
+  height: 40%px;
+  position: relative;
+}
+.h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+}
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+.popup .close:hover {
+  color: orange;
+}
+.popup .content {
+  max-height: 400;
+  overflow: auto;
+}
+.popup .content1 {
+  max-height: 400;
+  overflow: auto;
+}
+.popup2 .content {
+  max-height:90;
+  overflow: auto;
+}
+.popup2 .content1 {
+  max-height: 90;
+  overflow: auto;
+}
+.mar:hover{
+	color: white; 
+	background-color: #008080;
+}
+.mar{
+	background-color: #20B2AA;
+	color:#fff;
+	font-size:18px;
+	line-height:30px;
+	border-radius:5px;
+		margin-left: 7px;
+		transition: all 200ms;
+	border:0;
+	height:32px;
+	width:45px;
+	
+}
+h1{
+	color:#585858 ;
+	text-align:center;
+}

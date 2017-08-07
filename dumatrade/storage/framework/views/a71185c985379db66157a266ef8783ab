@@ -1,0 +1,45 @@
+<?php $__env->startSection('content'); ?>
+    <br>
+    <br>
+    <br>
+    <br>
+    <center><div class="container">
+            <br>
+            Pending Requests
+            <hr class="style13">
+            <table id="product" CELLSPACING="15">
+                <?php foreach($prods as $p): ?>
+                    <tr><td  valign="top">
+                            <table CELLSPACING="15"><tr><td>
+                                        <img src=<?php echo e(asset('/images/'.$p->image)); ?>  style=' height: 100px; width: 100px;' >
+                                    </td><td valign="top" width="750">
+                                        <a style="color:black;text-decoration:none;" href=<?php echo e(url('approve/'.$p->id)); ?>>
+                                            Name:   <?php echo e($p->name); ?><br>
+                                            Description:   <?php echo e($p->description); ?><br>
+                                            Price:   <?php echo e($p->price); ?><br>
+                                            <?php foreach($cat as $c): ?>
+                                                <?php if($p->id == $c->id): ?>
+                                                    Category: <?php echo e($c->category_name); ?><br>
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
+                                            <?php foreach($sellers as $s): ?>
+                                                <?php if($p->user_id == $s->id): ?>
+                                                    Seller: <?php echo e($s->name); ?><br>
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
+
+
+                                        </a>
+                                    </td>
+                                    <td valign="top">
+                                        <button class="mar" style="width:100px" onclick="location.href='<?php echo e(url('approve/'.$p->id)); ?>'">Approve</button><br><br>
+                                        <button class="mar" style="width:100px" onclick="location.href='<?php echo e(url('negotiate/'.$p->id)); ?>'">Reject</button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td></tr>
+                <?php endforeach; ?>
+            </table>
+            <div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

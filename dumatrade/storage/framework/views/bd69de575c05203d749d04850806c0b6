@@ -1,0 +1,55 @@
+<?php $__env->startSection('content'); ?>
+
+		<center><div class="container">
+                <br>
+                All Products
+                <hr class="style13">
+					<table id="product" CELLSPACING="15">
+            <?php foreach($prods as $p): ?>
+                        <tr><td  valign="top">
+                            <table CELLSPACING="15"><tr><td>
+                                        <img src=<?php echo e(asset('/uploads/'.$p->image)); ?>  style=' height: 100px; width: 100px;' >
+                                        </td><td valign="top" width="750">
+                                        <a style="color:black;text-decoration:none;" href=<?php echo e(url('viewproduct/'.$p->id)); ?>>
+                                            Name:   <?php echo e($p->name); ?><br>
+                                            Description:   <?php echo e($p->description); ?><br>
+                                            Price:   <?php echo e($p->price); ?><br>
+                                            <?php foreach($cat as $c): ?>
+                                                <?php if($p->id == $c->id): ?>
+                                                    Category: <?php echo e($c->category_name); ?><br>
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
+                                            <?php foreach($sellers as $s): ?>
+                                                <?php if($p->user_id == $s->id): ?>
+                                                    Seller: <?php echo e($s->name); ?><br>
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
+
+
+                                        </a>
+                                        </td>
+                                        <?php if(!Auth::guest()): ?>
+                                            <?php if(Auth::user()->id != $p->user_id): ?>
+                                                <?php if($p->status == 'Sold'): ?>
+                                                    <td valign="top">
+                                                        <button class="mar" style="width:100px">Sold</button>
+                                                    </td>
+                                                <?php elseif($p->status == 'Reserved'): ?>
+                                                    <td valign="top">
+                                                        <button class="mar" style="width:100px">Reserved</button>
+                                                    </td>
+                                                <?php else: ?>
+                                                    <td valign="top">
+                                                        <button class="mar" style="width:100px" onclick="location.href='<?php echo e(url('negotiate/'.$p->id)); ?>'">Negotiate</button>
+                                                    </td>
+                                                <?php endif; ?>
+                                            <?php endif; ?>
+                                        <?php endif; ?>
+                                </tr>
+                            </table>
+                        </td></tr>
+            <?php endforeach; ?>
+						</table>
+		<div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

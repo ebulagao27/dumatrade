@@ -1,0 +1,51 @@
+<script type="text/javascript">
+    window.paypalCheckoutReady = function () {
+        paypal.checkout.setup('Your merchant email id', {
+            container: 'myContainer', //{String|HTMLElement|Array} where you want the PayPal button to reside
+            environment: 'sandbox' //or 'production' depending on your environment
+        });
+    };
+</script>
+<script src="//www.paypalobjects.com/api/checkout.js" async></script>
+<?php $__env->startSection('content'); ?>
+    <center>
+        <div class="container">
+            <br>
+            Shopping Cart
+                <form id="myContainer" action="<?php echo e(asset('Checkout/paypal_ec_redirect.php')); ?>" method="POST">
+                    <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
+                    <input type="hidden" name="PAYMENTREQUEST_0_AMT" value="<?php echo e($sum); ?>">
+                    <input type="hidden" name="PAYMENTREQUEST_0_SHIPTOSTREET" value="Norsu Rd.">
+                    <input type="hidden" name="PAYMENTREQUEST_0_SHIPTOCITY" value="Dumaguete" >
+                    <input type="hidden" name="currencyCodeType" value="USD">
+                    <input type="hidden" name="paymentType" value="Sale">
+                </form>
+
+            <hr class="style13">
+            <table id="product" CELLSPACING="15">
+                <?php foreach($cart as $ca): ?>
+                    <tr><td valign="top">
+                        <table cellspacing="10"><tr><td>
+                            <?php foreach($prods as $p): ?>
+                                <?php if($ca->product_id == $p->id): ?>
+                                    <img src=<?php echo e(asset('/uploads/'.$p->image)); ?>  style=' height: 100px; width: 100px;' >
+                                </td><td>
+                                    Name:<?php echo e($p->name); ?><br>
+                                    <?php foreach($users as $u): ?>
+                                        <?php if($ca->buyer_id == $u->id): ?>
+                                            Buyer: <?php echo e($u->name); ?><br>
+                                        <?php endif; ?>
+                                        <?php if($ca->seller_id == $u->id): ?>
+                                            Seller: <?php echo e($u->name); ?><br>
+                                <?php endif; ?>
+                                <?php endforeach; ?>
+
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                            <td></tr></table>
+                        </td></tr>
+                <?php endforeach; ?>
+            </table>
+            <div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

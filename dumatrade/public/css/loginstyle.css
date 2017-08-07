@@ -1,0 +1,40 @@
+.login-container{
+    display:block;
+    position:relative;
+    top:70px;
+    left:450px;
+    width:500px;
+    right:400px;
+    background-color: #E8E8E8;
+    border-radius:20px;
+}
+.login-header{
+    background: #282828 ;
+    padding-top:15px;
+    height:70px;
+    border-radius: 20px 20px 0px 0px;
+    color:white;
+}
+.button-style{
+    background-color: #20B2AA;
+    color:#fff;
+    font-size:18px;
+    line-height:30px;
+    border-radius:0px 0px 20px 20px;
+    margin-left: 0px;
+    border:0;
+    width:500px;
+    height:50px;
+}
+.button-style:hover{
+    color: white;
+    background-color: #008080;
+}
+.form{
+    border:1px solid #696969;
+    padding-left:3px;
+    width:220px;
+    height:30px;
+    margin:2px;
+    border-radius:4px;
+}

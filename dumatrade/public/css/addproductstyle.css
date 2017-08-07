@@ -1,0 +1,26 @@
+#form{
+    margin-top:10px;
+    width:840px;
+    border:1px solid black;
+    margin-left:auto;
+    margin-right:auto;
+}
+.style{
+    width:500px;
+    height:30px;
+}
+.styleb{
+    width:500px;
+    height:60px;
+}
+.stylec{
+    width:100px;
+    height:30px;
+}
+.styled{
+    margin:6px;
+}
+.button{
+    width:60px;
+    height:30px;
+}

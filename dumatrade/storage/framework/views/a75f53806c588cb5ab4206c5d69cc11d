@@ -1,0 +1,69 @@
+<?php $__env->startSection('content'); ?>
+<center>
+<div class="container">
+	<div class="row">
+        <table cellspacing="25">
+        <tr>
+            <td valign="top">
+                <img src='./images/prof.png'  style=' height: 60px; width: 60px;' >
+            </td>
+            <td>
+            <?php foreach($info as $i): ?>
+                <?php echo e($i->name); ?><br /></br>
+                <?php endforeach; ?>
+                    <input type="submit" value="SELL  YOUR  ITEM  NOW!" class="maroon1" onclick="location.href='<?php echo e(url('addproduct')); ?>'"><br /><br />
+                    YOUR ITEMS: <br /><br />
+                    <table   CELLSPACING="15">
+                    <?php foreach($products as $p): ?>
+                                <tr>
+                                <td  valign="top" class="profile-product">
+                                    <table CELLSPACING="15">
+                                        <tr>
+                                            <td>
+                                                <img style="height: 100px; width: 100px;" src=<?php echo e(asset('/uploads/'.$p->image)); ?>   >
+                                            </td>
+                                            <td valign="top" width="750">
+                                                <a style="color:black;text-decoration:none;" href="viewproduct/<?php echo e($p->id); ?>">
+                                                    Product Name: <?php echo e($p->name); ?><br>
+                                                    Description: <?php echo e($p->description); ?><br>
+                                                    <?php foreach($category as $c): ?>
+                                                            <?php if($p->id == $c->id): ?>
+                                                                    Category: <?php echo e($c->category_name); ?><br>
+                                                            <?php endif; ?>
+                                                    <?php endforeach; ?>
+                                                    Price: <?php echo e($p->price); ?><br><br>
+                                                    </a>
+                                            </td>
+                                            <td valign="top">
+                                            <a href="?id=<?php echo e($p->id); ?>#popup1"  class="grow"><img src="<?php echo e(asset('/images/delete.png')); ?>" style='height:20px; width:20px; '></a>
+                                            <a href="editproduct/<?php echo e($p->id); ?>" class="grow"><img src="<?php echo e(asset('/images/edit.png')); ?>" style='height:20px; width:20px; '></a>&nbsp;&nbsp;
+
+                                            </td>
+                                        </tr>
+                                    </table>
+                    </td></tr>
+                <?php endforeach; ?>
+						</table>
+				</td>
+			</tr>
+			</table>
+				<div id="popup1" class="overlay">
+                    <div class="popup">
+                        <center>
+                        <h1 align="left">Delete product?</h1>
+                        <div class="content">
+                            <?php if(isset($_GET['id'])): ?>
+                                <button class="mar"  width="60px" onclick="location.href='delete/<?php echo e($_GET['id']); ?>'">Yes</button>
+                                <button class="mar"  width="60px" onclick="location.href='profile'">No</button>
+                            <?php endif; ?>
+                        </div>
+                        </center>
+                    </div>
+                </div>
+
+	</div>
+</div>
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,60 @@
+<?php $__env->startSection('content'); ?>
+
+		<center>
+            <div class="container">
+            <br>
+            Pending Purchases
+            <hr class="style13">
+                <table id="product" CELLSPACING="15">
+                    <?php foreach($negotiations as $n): ?>
+                        <?php foreach($prods as $p): ?>
+                            <?php if($p->id == $n->product_id): ?>
+                                <tr>
+                                    <td valign="top">
+                                        <table cellspacing="15">
+                                            <tr>
+                                                <td>
+                                                    <img src=<?php echo e(asset('/uploads/'.$p->image)); ?>  style=' height: 100px; width: 100px;' >
+                                                </td>
+                                                <td valign="top" width="750">
+                                                    <a style="color:black;text-decoration:none;" href=<?php echo e(url('viewproduct/'.$p->id)); ?>>
+                                                        Name:          <?php echo e($p->name); ?><br>
+                                                        Price:         <?php echo e($p->price); ?><br>
+                                                        Offered Price: <?php echo e($n->bidPrice); ?><br>
+                                                        Status: <?php echo e($n->deal); ?>
+
+                                                    </a>
+                                                </td>
+                                                <td valign="top">
+                                                    <?php if($n->deal == 'Approved'): ?>
+                                                        <a href=""  class="grow"><button class="maroon1" style="width:100px">Approved</button></a>
+                                                    <?php else: ?>
+                                                        <a href="?id=<?php echo e($n->id); ?>#popup1"  class="grow"><button class="maroon1" style="width:145px">Cancel Request</button></a>
+                                                    <?php endif; ?>
+                                                    <br><br>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    <?php endforeach; ?>
+                </table>
+                <div id="popup1" class="overlay">
+                    <div class="popup">
+                        <center>
+                            <h1 align="left">Cancel request?</h1>
+                            <div class="content">
+                                <?php if(isset($_GET['id'])): ?>
+                                    <button class="mar"  width="60px" onclick="location.href='deleterequest/<?php echo e($_GET['id']); ?>'">Yes</button>
+                                    <button class="mar"  width="60px" onclick="location.href='pendingpurchases'">No</button>
+                                <?php endif; ?>
+                            </div>
+                        </center>
+                    </div>
+                </div>
+		<div>
+        </center>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

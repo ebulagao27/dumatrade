@@ -1,0 +1,31 @@
+<html>
+<head>
+
+    <link href="<?php echo e(asset('/css/loginstyle.css')); ?>" rel="stylesheet">
+
+</head>
+<body>
+<div class="login-container">
+    <div class="login-header">
+        <center><img src='./images/icon3.png'  style=' height: 50px; width: 180px;' ></center>
+    </div><br /><center>
+        <?php if(count($errors) > 0): ?>
+            <div>
+                <ul>
+                    <?php foreach($errors->all() as $error): ?>
+                        <li><?php echo e($error); ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        <?php endif; ?>
+        <form action="<?php echo e(url('/login')); ?>" method="post">
+            <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
+            <input type="email" placeholder="Username" class="form" name="email"><br />
+            <input type="password" name="password" placeholder="Password" class="form"><br /><br />
+            <input style="margin-left:10px" type="checkbox" name="remember"> Remember Me
+            <input type="submit" class="button-style">
+        </form>
+    </center>
+</div>
+</body>
+</html>
